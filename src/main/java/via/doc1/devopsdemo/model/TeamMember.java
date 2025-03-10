@@ -1,12 +1,24 @@
 package via.doc1.devopsdemo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
+
+@Entity(name = "TeamMember")
+@Table(name = "team_member")
 public class TeamMember {
-    private String id;
-    private String name;
-    private String email;
-    private List<Task> tasks;
+@Id
+private String id;
+private String name;
+private String email;
+@OneToMany(
+fetch=FetchType.LAZY,
+mappedBy = "teamMember")
+@JsonIgnore
+private List<Task> tasks = new ArrayList<>();
 
     public TeamMember(String id, String name, String email, List<Task> tasks) {
         this.id = id;
