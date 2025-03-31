@@ -1,19 +1,19 @@
-version: "3.8"
+version: "3.9"
 services:
   db:
-    image: "postgres:14.1-alpine"
+    image: "postgres:14.7-alpine3.17"
     restart: always
     container_name: "doc-pgsql-container"
     ports:
       - 5432:5432
     volumes:
-      - db:/var/lib/postgresql/data
+    - db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=doc-db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   backend:
-    image: 'devops-demo:latest'
+    image: 'devops-demo:v2.22.3'
     build:
       context: ./
     container_name: 'devops-demo-container'
